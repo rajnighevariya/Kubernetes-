@@ -1,1 +1,3 @@
-
+kubectl create deployemnt my-app --image=link
+kubectl get deployments
+kubectl get nods
