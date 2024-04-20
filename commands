@@ -15,3 +15,6 @@ kubectl delete pod (pod name)
 
 # delete service
 kubectl delete service (service name)
+
+#kubernet and docker run on google cloud 
+https://cloud.google.com/sdk/docs/cheatsheet
