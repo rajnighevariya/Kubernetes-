@@ -7,3 +7,11 @@ kubectl get nods
 set alias For commands
 code ~/.zshrc
 code ~/.bashrc
+
+
+kubectl delete all --all --namespace default
+# delete pod
+kubectl delete pod (pod name)
+
+# delete service
+kubectl delete service (service name)
