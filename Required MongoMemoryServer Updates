@@ -1,0 +1,37 @@
+In the upcoming lecture, we will be setting up our test environment with MongoMemoryServer. If you are using the latest versions of this library a few changes will be required:
+
+In auth/src/test/setup.ts, change these lines:
+
+  mongo = new MongoMemoryServer();
+  const mongoUri = await mongo.getUri();
+to this:
+
+  mongo = await MongoMemoryServer.create();
+  const mongoUri = mongo.getUri();
+
+
+Remove the useNewUrlParser and useUnifiedTopology parameters from the connect method. Change this:
+
+  await mongoose.connect(mongoUri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+to this:
+
+  await mongoose.connect(mongoUri, {});
+
+
+Then, find the afterAll hook and add a conditional check:
+
+afterAll(async () => {
+  if (mongo) {
+    await mongo.stop();
+  }
+  await mongoose.connection.close();
+});
+
+
+For reference:
+
+https://nodkz.github.io/mongodb-memory-server/docs/guides/migration/migrate7/https://nodkz.github.io/mongodb-memory-server/docs/guides/migration/migrate7/
+
